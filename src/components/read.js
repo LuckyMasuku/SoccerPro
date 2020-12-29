@@ -1,33 +1,25 @@
 import React from 'react';
 import { Matches } from './matches';
+import axios from 'axios';
 
+
+
+//Class extends from react
 export class Read extends React.Component {
     //added data to the state
     state = {
-        matches: [
-            {
-                "Player": "A Lacazette",
-                "Venue": "Newcastle",
-                "imdbID": "tt4154756",
-                "Type": "match",
-                "Team": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-            },
-            {
-                "Player": "T Silva",
-                "Venue": "London",
-                "imdbID": "tt3498820",
-                "Type": "match",
-                "Team": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-            },
-            {
-                "Player": "O Giroud",
-                "Venue": "Fullham",
-                "imdbID": "tt0472062",
-                "Type": "match",
-                "Team": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4._V1_SX300.jpg"
-            }
-        ]
-
+        matches: [ ]
+    };
+      componentDidMount(){
+          //it will allow to retrieve information about resource
+          axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+          .then((response)=>{
+              this.setState({ matches: response.data.Search })
+          })
+        .catch((error) =>{
+            console.log(error)
+        });
+      
     }
     render() {
         return (
@@ -35,7 +27,7 @@ export class Read extends React.Component {
                 <h1>This is the read Component.</h1>
                 <Matches matches={this.state.matches}></Matches>
             </div>
-        )
+        );
     }
 
 }
