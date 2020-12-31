@@ -12,10 +12,12 @@ export class Read extends React.Component {
     };
       componentDidMount(){
           //it will allow to retrieve information about resource
-          axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+          axios.get('http://localhost:4000/api/matches')
+          //this function will get response from the path updating the state
           .then((response)=>{
-              this.setState({ matches: response.data.Search })
+              this.setState({ matches: response.data.matches })
           })
+          //if there is an error this function will be used
         .catch((error) =>{
             console.log(error)
         });
@@ -24,7 +26,7 @@ export class Read extends React.Component {
     render() {
         return (
             <div>
-                <h1>This is the read Component.</h1>
+                <h1>Our The Best Teams.</h1>
                 <Matches matches={this.state.matches}></Matches>
             </div>
         );

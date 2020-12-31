@@ -1,10 +1,10 @@
 import React from 'react';
-
+import axios from 'axios';
 
 //Class extends from react
 export class Create extends React.Component {
 
-    //
+    //allows the bind to the controls
     constructor() {
         super();
 
@@ -39,13 +39,28 @@ export class Create extends React.Component {
 
         });
     }
-
+     //alert will display the different data on controls
     onSubmit(e) {
         e.preventDefault();
         alert("Match: " + this.state.Player + " " + this.state.Venue + " " + this.state.Team);
+        
+        const newMatch ={
+            Player: this.state.Player,
+            Venue: this.state.Venue,
+            Team: this.state.Team
+        }
+        //returns a promise
+        axios.post('http://localhost:4000/api/matches',newMatch)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
     render() {
         return (
+            //form that will store 
             <div className='App'>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
