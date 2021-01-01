@@ -16,7 +16,7 @@ export class MatchItem extends React.Component {
                         <blockquote className="bloquote mb-0">
                             <img src={this.props.match.Team} width="200" height="200"></img>
                             <footer className="bloquote-footer">
-                                <p>{this.props.match.Venue}</p>
+                                {this.props.match.Venue}
                             </footer>
                         </blockquote>
                     </Card.Body>
